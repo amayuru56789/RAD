@@ -2,11 +2,12 @@
 import './App.css';*/
 
 import Login from "./pages/Login";
+import Product from "./pages/ProductManage";
 
 function App() {
   return (
     <div className="App">
-        <Login/>
+        <Product/>
     </div>
   );
 }
