@@ -9,20 +9,15 @@ import {upload} from "@testing-library/user-event/dist/upload";
 import {withStyles} from "@mui/styles";
 import {styleSheet} from "../Login/style";
 
-class Product extends Component{
+class Cart extends Component{
 
     constructor(props) {
         super(props);
-        this.state={
-            profileImg: profileImg
-        }
     }
 
     render() {
 
         const {classes} = this.props;
-
-        const {profileImg} = this.state
 
         const top100Films = [
             { label: 'The Shawshank Redemption', year: 1994 },
@@ -33,7 +28,7 @@ class Product extends Component{
 
         return(
             <Fragment>
-                <h1>Product Manage Form</h1>
+                <h1>Cart Manage Form</h1>
                 <ValidatorForm
                     ref="form"
                     className="pt-2"
@@ -41,28 +36,27 @@ class Product extends Component{
                     onError={errors => console.log(errors)}
                 >
                     <Grid container className="pt-2" spacing={3} >
-                        <Grid item lg={6} md={6} sm={6} xm={6}>
 
-                            <TextValidator id="outlined-basic" placeHolder="Title" label="Title" variant="outlined"
-                                           size="small" style={{width: '100%'}}
-                                           /*value={this.state.formData.title}
-                                           onChange={(e) => {
-                                               let formData=this.state.formData;
-                                               formData.title = e.target.value;
-                                               this.setState({formData});
-                                           }}*/
-                                           validators={['required', 'isString']}
+                        <Grid item lg={6} md={6} sm={6} xm={6}>
+                            <Autocomplete
+                                disablePortal
+                                id="combo-box-demo"
+                                size="small"
+                                style={{width: '100%'}}
+                                options={top100Films}
+                                sx={{ width: 300 }}
+                                renderInput={(params) => <TextField {...params} label="User Name" />}
                             />
                         </Grid>
                         <Grid item lg={6} md={6} sm={6} xm={6}>
 
-                            <TextValidator id="outlined-basic" placeHolder="Price" label="Price"
+                            <TextValidator id="outlined-basic" placeHolder="Date" label="Date"
                                            variant="outlined" size="small" style={{width: '100%'}}
-                                           /*value={this.state.formData.price}
+                                           /*value={this.state.formData.description}
                                            onChange={(e) => {
-                                               let formData=this.state.formData;
-                                               formData.price = e.target.value;
-                                               this.setState({formData});
+                                           let formData=this.state.formData;
+                                           formData.description = e.target.value;
+                                           this.setState({formData});
                                            }}*/
                                            validators={['required', 'isString']}
                             />
@@ -75,12 +69,12 @@ class Product extends Component{
                                 style={{width: '100%'}}
                                 options={top100Films}
                                 sx={{ width: 300 }}
-                                renderInput={(params) => <TextField {...params} label="Movie" />}
+                                renderInput={(params) => <TextField {...params} label="Product Title" />}
                             />
                         </Grid>
                         <Grid item lg={6} md={6} sm={6} xm={6}>
 
-                            <TextValidator id="outlined-basic" placeHolder="Description" label="Description"
+                            <TextValidator id="outlined-basic" placeHolder="Qty" label="Qty"
                                            variant="outlined" size="small" style={{width: '100%'}}
                                            /*value={this.state.formData.description}
                                            onChange={(e) => {
@@ -91,18 +85,6 @@ class Product extends Component{
                                            validators={['required', 'isString']}
                             />
                         </Grid>
-
-                        {/*<Grid item lg={6} md={6} sm={6} xm={6}>*/}
-                            {/*<div className={classes.page}>
-                                <div className={classes.container}>*/}
-                                    <h1 className={classes.heading}>Add your Image</h1>
-                                    {/*<div className={classes.img_holder}>*/}
-                                        {/*<img src={profileImg} id="img" alt="" className={classes.img}/>*/}
-                                    {/*</div>*/}
-                                    <input type={"file"} name="image-upload" id="input" accept="image/*" className={classes.input}/>
-                                {/*</div>
-                            </div>*/}
-                        {/*</Grid>*/}
 
                         <Grid item lg={6} md={6} sm={6} xm={6} style={{display: 'flex'}} justifyContent={"flex-end"}>
                             <AVCButton variant="contained" label="Clear"
@@ -127,4 +109,4 @@ class Product extends Component{
     }
 }
 
-export default withStyles(styleSheet) (Product);
+export default withStyles(styleSheet) (Cart);
